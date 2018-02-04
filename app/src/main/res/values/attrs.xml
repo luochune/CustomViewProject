@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MutiProgress">    
+        <attr name="nodesNum" format="integer"/> <!-- 节点数量 -->  
+        <attr name="nodeRadius" format="dimension"/>  
+        <attr name="progressingDrawable" format="reference"></attr>  
+        <attr name="unprogressingDrawable" format="reference" />  <!-- 未完成的节点图标 -->
+        <attr name="progresFailDrawable" format="reference" />    
+        <attr name="progresSuccDrawable" format="reference" /> 
+              
+        <attr name="processingLineColor" format="color"></attr>
+        <attr name="currNodeNO" format="integer"></attr>   <!-- 当前所到达的节点编号  0开始计算--> 
+        <attr name="currNodeState" format="integer"></attr>   <!-- 当前所到达的节点状态，0：失败  1：成功 --> 
+    </declare-styleable>
+
+     <declare-styleable name="vipcustomview">
+         <attr name="noArriveProgressLineColor" format="color"></attr> <!--未到达等级的进度条颜色-->
+         <attr name="arriveProgressLineColor" format="color"></attr> <!--已到达等级的进度条颜色-->
+         <attr name="noArriveTextColor" format="color"></attr><!--未到达字体颜色-->
+         <attr name="nodeRoundRadius" format="dimension"/> <!--非当前等级圆圈半径-->
+         <attr name="currentNodeRadius" format="dimension"/><!--当前等级圆圈半径-->
+         <attr name="progressLineLength" format="dimension"/><!--进度条长度-->
+         <attr name="textMarginProgress" format="dimension"/><!--进度条下方文字距离上方进度条的距离-->
+         <attr name="currentNodeDrawable" format="reference"></attr><!--当前等级图标-->
+         <attr name="arriveNodeDrawable" format="reference"></attr><!--已到达圆心点图标-->
+         <attr name="noArriveNodeDrawable" format="reference"></attr><!--未到达圆心点图标-->
+         <attr name="nodesNums" format="integer"/> <!-- 节点数量 -->
+         <attr name="currentNodeNO" format="integer"></attr> <!--当前所在节点数-->
+         <attr name="progressLineHeight" format="dimension"></attr><!--进度条高度-->
+     </declare-styleable>
+</resources>
