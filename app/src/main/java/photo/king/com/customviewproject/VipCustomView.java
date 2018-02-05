@@ -15,6 +15,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import util.DensityUtils;
+
 /**
  * Created by luochune on 2018/1/23.
  * Introduction: 自定义等级view
@@ -43,7 +45,7 @@ public class VipCustomView extends View {
     private Canvas mCanvas;
     private String[] vipLevelAry;
     private Context mContext;
-    private int vipDrawableLineLengh=50;//会员等级图标的宽和高像素
+    private int vipDrawableLineLengh;//会员等级图标的宽和高像素
     private int paddingLeft=40;
     public VipCustomView(Context context) {
         this(context,null);
@@ -56,6 +58,7 @@ public class VipCustomView extends View {
         super(context, attrs, defStyleAttr);
         mContext=context;
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.vipcustomview);
+        vipDrawableLineLengh=DensityUtils.dip2px(context,15);//会员等级图标的宽和高像素
         //nodesNum=mTypedArray.getInteger(R.styleable.vipcustomview_nodesNums, 7);
         currentNodeNO=mTypedArray.getInteger(R.styleable.vipcustomview_currentNodeNO,0);
         nodeRadius = mTypedArray.getDimensionPixelSize(R.styleable.vipcustomview_nodeRoundRadius,14);
@@ -88,12 +91,12 @@ public class VipCustomView extends View {
         textGrayPaint=new Paint();
         textGrayPaint.setColor(noArriveTextColor);
         textGrayPaint.setAntiAlias(true);
-        textGrayPaint.setTextSize(50);
+        textGrayPaint.setTextSize(DensityUtils.sp2px(mContext,15));
         //橘色字体画笔
         textOrangePaint=new Paint();
         textOrangePaint.setColor(arriveProgressLineColor);
         textOrangePaint.setAntiAlias(true);
-        textOrangePaint.setTextSize(50);
+        textOrangePaint.setTextSize(DensityUtils.sp2px(mContext,15));
         setVipLevelAry();
         /**
          *   <attr name="noArriveProgressLineColor" format="color"></attr> <!--未到达等级的进度条颜色-->
@@ -113,7 +116,8 @@ public class VipCustomView extends View {
     }
 
     public void setVipLevelAry() {
-            this.vipLevelAry = new String[]{"潜力", "青铜", "白银", "黄金", "铂金", "钻石", "至尊", "传奇"};
+            //this.vipLevelAry = new String[]{"石头", "铜石", "银子", "金子", "铂子", "钻子", ""书子, "奇子"};
+        this.vipLevelAry = new String[]{"石头", "铜石", "银子", "金子", "铂子"};
             nodesNum=vipLevelAry.length;
     }
 
@@ -189,7 +193,8 @@ public class VipCustomView extends View {
                 arriveNodeDrawable.draw(canvas);
                 drawable.setBounds(node.mPoint.x+nodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*nodeRadius+textMarginProgress,node.mPoint.x+nodeRadius-5,node.mPoint.y+2*nodeRadius+textMarginProgress+vipDrawableLineLengh);
                 //等级文字
-                int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                //int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+vipDrawableLineLengh-(int)textOrangePaint.descent();
                 canvas.drawText(vipLevelAry[i],node.mPoint.x+nodeRadius,textY,textOrangePaint);
                 drawable.draw(canvas);
             }else if (i == currentNodeNO)
@@ -198,9 +203,10 @@ public class VipCustomView extends View {
                currentNodeDrawabl.setBounds(node.mPoint.x,node.mPoint.y,node.mPoint.x+2*currentNodeRadius,node.mPoint.y+2*currentNodeRadius);
                 currentNodeDrawabl.draw(canvas);
                 //等级文字
-                int textY=node.mPoint.y+2*currentNodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                //int textY=node.mPoint.y+2*currentNodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                int textY=node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh-(currentNodeRadius-nodeRadius)*2-(int)textOrangePaint.descent();
                 canvas.drawText(vipLevelAry[i],node.mPoint.x+nodeRadius,textY,textOrangePaint);
-                drawable.setBounds(node.mPoint.x+nodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress,node.mPoint.x+nodeRadius-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh+5);
+                drawable.setBounds(node.mPoint.x+currentNodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress,node.mPoint.x+currentNodeRadius-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh-(currentNodeRadius-nodeRadius)*2);
                 drawable.draw(canvas);
             }else if(i>currentNodeNO)
             {
@@ -208,7 +214,8 @@ public class VipCustomView extends View {
                noArriveNodeDrawable.setBounds(node.mPoint.x,node.mPoint.y,node.mPoint.x+2*nodeRadius,node.mPoint.y+2*nodeRadius);
                 noArriveNodeDrawable.draw(canvas);
                 //等级文字
-                int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                //int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
+                int textY=node.mPoint.y+2*nodeRadius+textMarginProgress+vipDrawableLineLengh-(int)textGrayPaint.descent();
                 canvas.drawText(vipLevelAry[i],node.mPoint.x+nodeRadius,textY,textGrayPaint);
                 drawable.setBounds(node.mPoint.x+nodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*nodeRadius+textMarginProgress,node.mPoint.x+nodeRadius-5,node.mPoint.y+2*nodeRadius+textMarginProgress+vipDrawableLineLengh);
                 drawable.draw(canvas);
@@ -241,7 +248,7 @@ public class VipCustomView extends View {
         bgPaint.setColor(Color.parseColor("#f0f0f0"));
         mCanvas.drawRect(0, 0, mWidth, mHeight, bgPaint);*/
       //已到达前半截橙色线段
-        mCanvas.drawRect(nodeRadius,mHeight/2-progressLineHeight/2,nodes.get(currentNodeNO).mPoint.x+currentNodeRadius,mHeight/2+progressLineHeight/2,nodeOrangePaint);
+        mCanvas.drawRect(nodes.get(0).mPoint.x,mHeight/2-progressLineHeight/2,nodes.get(currentNodeNO).mPoint.x+currentNodeRadius,mHeight/2+progressLineHeight/2,nodeOrangePaint);
         //未到达后半截灰色线段
         mCanvas.drawRect(nodes.get(currentNodeNO).mPoint.x+currentNodeRadius,mHeight/2-progressLineHeight/2,nodes.get(nodes.size()-1).mPoint.x+nodeRadius,mHeight/2+progressLineHeight/2,nodeGrayPaint);
     }

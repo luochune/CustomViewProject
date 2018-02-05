@@ -53,11 +53,11 @@
    <!-- android:layout_below="@id/mp_3"-->
   <photo.king.com.customviewproject.VipCustomView
        android:layout_width="match_parent"
-       android:layout_height="80dp"
+       android:layout_height="100dp"
        android:layout_marginTop="20dp"
        app:arriveProgressLineColor="@color/orange"
        app:noArriveProgressLineColor="@color/gray_ec"
-       app:progressLineLength="30dp"
+       app:progressLineLength="60dp"
        app:noArriveTextColor="@color/gray_99"
        app:nodeRoundRadius="7dp"
        app:currentNodeRadius="12dp"
@@ -66,7 +66,7 @@
        app:arriveNodeDrawable="@drawable/shape_circle_vip_orange"
        app:noArriveNodeDrawable="@drawable/shape_circle_vip_gray"
        app:currentNodeDrawable="@mipmap/icon_vip_current"
-       app:nodesNums="7"
-       app:currentNodeNO="5"/>
+       app:nodesNums="5"
+       app:currentNodeNO="3"/>
    <!-- app:currentProgressDrawable=""-->
 </RelativeLayout>
