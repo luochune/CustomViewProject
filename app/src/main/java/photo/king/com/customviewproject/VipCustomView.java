@@ -206,7 +206,7 @@ public class VipCustomView extends View {
                 //int textY=node.mPoint.y+2*currentNodeRadius+textMarginProgress+(int)vipDrawableLineLengh/2+(int)((textOrangePaint.descent()-textOrangePaint.ascent())/2);
                 int textY=node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh-(currentNodeRadius-nodeRadius)*2-(int)textOrangePaint.descent();
                 canvas.drawText(vipLevelAry[i],node.mPoint.x+nodeRadius,textY,textOrangePaint);
-                drawable.setBounds(node.mPoint.x+currentNodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress,node.mPoint.x+currentNodeRadius-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh-(currentNodeRadius-nodeRadius)*2);
+                drawable.setBounds(node.mPoint.x+currentNodeRadius-vipDrawableLineLengh-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress-(currentNodeRadius-nodeRadius)*2,node.mPoint.x+currentNodeRadius-5,node.mPoint.y+2*currentNodeRadius+textMarginProgress+vipDrawableLineLengh-(currentNodeRadius-nodeRadius)*2);
                 drawable.draw(canvas);
             }else if(i>currentNodeNO)
             {
